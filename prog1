@@ -1,0 +1,42 @@
+library(Rglpk)
+# Exercise1
+# defining parameters
+obj.fun1 <- c(-1 , 3)
+constr1 <- matrix (c( -2 , 1) , ncol = 2 , byrow = TRUE )
+constr.dir1 <- c("==")
+rhs1 <- c(18)
+bounds1 <- list(lower = list(ind = c(1L), val = c(-Inf)),
+               upper = list(ind = c(1L), val = c(4)))
+
+# solving model
+Rglpk_solve_LP ( obj.fun1 , constr1 , constr.dir1 , rhs1, bounds1, max=FALSE )
+
+
+# Exercise2_1
+obj.fun2_1 <- c(1 , 1)
+constr2_1 <- matrix (c(1, 1, 3, -2, 2, 1) , ncol = 2 , byrow = TRUE )
+constr.dir2_1 <- c(">=", ">=", ">=")
+rhs2_1 <- c(1, -6 , 0)
+bounds2_1 <- list(lower = list(ind = c(1L), val = c(-Inf)),
+                upper = list(ind = c(1L,2L), val = c(6,4)))
+
+Rglpk_solve_LP (obj.fun2_1 , constr2_1 , constr.dir2_1 , rhs2_1, bounds2_1, max=TRUE )
+
+#Exercise2_2
+obj.fun2_2 <- c(0 , 1)
+constr2_2 <- matrix (c(1, 1, 3, -2, 2, 1) , ncol = 2 , byrow = TRUE )
+constr.dir2_2 <- c(">=", ">=", ">=")
+rhs2_2 <- c(1, -6 , 0)
+bounds2_2 <- list(lower = list(ind = c(1L), val = c(-Inf)),
+                upper = list(ind = c(1L,2L), val = c(6,4)))
+
+Rglpk_solve_LP (obj.fun2_2 , constr2_2 , constr.dir2_2 , rhs2_2, bounds2_2, max=TRUE )
+
+#Exercise3
+obj.fun3 <- c(4 , 2)
+constr3 <- matrix (c(10, 10, 30, 10, 50, 30) , ncol = 2 , byrow = TRUE )
+constr.dir3 <- c("<=", "<=", "<=")
+rhs3 <- c(30, 60 , 150)
+bounds3 <- list(lower = list(ind = c(1L,2L), val = c(1,1)))
+
+Rglpk_solve_LP (obj.fun3 , constr3 , constr.dir3 , rhs3, bounds3, max=TRUE )
